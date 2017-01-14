@@ -1,0 +1,174 @@
+ HOW TO USE A MODULE
+    To use a module, perform the following tasks:
+
+        1. Install the module. (This is often done for you.)
+        2. Import the module into your Windows PowerShell session.
+        3. Find the commands that the module added.
+        4. Use the commands that the module added.
+
+    This topic explains how to perform these tasks. It also includes
+    other useful information about managing modules.
+
+
+ HOW TO INSTALL A MODULE
+    If you receive a module as a folder with files in it, you need
+    to install it on your computer before you can import it into Windows
+    PowerShell.
+
+    Most modules are installed for you. Windows PowerShell comes with
+    several pre-installed modules. In Windows Server 2008 R2, the
+    Add Features Wizard in Server Manager automatically installs the
+    feature modules that you select. Many other modules come in an
+    installer or Setup program that installs the module.
+
+    To install a module folder:
+
+        1. Create a Modules directory for the current user if one does
+           not exist.
+
+           To create a Modules directory, type:
+
+               new-item -type directory -path $home\Documents\WindowsPowerShell\Modules
+
+        2. Copy the entire module folder into the Modules directory.
+
+           You can use any method to copy the folder, including Windows
+           Explorer and Cmd.exe, as well as Windows PowerShell.
+
+           In Windows PowerShell use the Copy-Item cmdlet. For example, to copy the
+           MyModule folder from C:\ps-test\MyModule to the Modules directory, type:
+
+               copy-item -path c:\ps-test\MyModule -dest $home\Documents\WindowsPowerShell\Modules
+
+    You can install a module in any location, but installing your modules in a
+    default module location makes them easier to manage. For more information about
+    the default module locations, see the "Module Locations and PSModulePath" section.
+
+ HOW TO FIND INSTALLED MODULEs
+     When a module is installed, you can import it into your Windows
+     PowerShell session.
+
+     To find modules that are installed in a default module location,
+     at the Windows PowerShell prompt, type:
+
+         get-module -listAvailable
+
+
+     To find the modules that have already been imported into your session,
+     at the Windows PowerShell prompt, type:
+
+         get-module
+
+     For more information about the Get-Module cmdlet, see Get-Module.
+
+
+ HOW TO IMPORT A MODULE
+    To use the commands in a module, import the module into a
+    Windows PowerShell session.
+
+    To import modules from a default module location into the
+    current session, use the following command format.
+
+        import-module <module-name>
+
+    For example, the following command imports the BitsTransfer module
+    into the current session.
+
+        import-module BitsTransfer
+
+
+    To import a module that is not in a default module location, use
+    the fully qualified path to the module folder in the command.
+
+    For example, to add the TestCmdlets module in the C:\ps-test directory
+    to your session, type:
+
+        import-module c:\ps-test\TestCmdlets
+
+
+    For more information about adding modules to your session, see
+    Import-Module.
+
+
+ HOW TO IMPORT ALL MODULES INTO YOUR WINDOWS POWERSHELL SESSION
+    In Windows 7 and Windows Server 2008 R2, the "Import all modules"
+    task opens a Windows PowerShell session that includes all the
+    available Windows PowerShell modules and snap-ins.
+
+    To start a Windows PowerShell session with all the available Windows
+    PowerShell modules and snap-ins, use the following procedure.
+
+    -- Right-click the Windows PowerShell icon in the taskbar, and then click
+       "Import all modules".
+
+    Note: In Windows Server 2008 R2, the Windows PowerShell icon is pinned to
+          the taskbar by default. However, you must start Windows PowerShell
+          one time to make the "Import all modules" task appear.
+
+    In other versions of Windows, to import all the available modules into your
+    session, at the Windows PowerShell prompt, type:
+
+        get-module -listAvailable | import-module
+
+
+ HOW TO FIND THE COMMANDS IN A MODULE
+    After you import a module into your Windows PowerShell session, you can
+    use the commands in the module.
+
+    To find the commands that a module added, at the Windows PowerShell prompt,
+    type:
+
+        get-command -module <module-name>
+
+    For example, to find the commands that the BitsTransfer module adds, type:
+
+        get-command -module BitsTransfer
+
+    For more information about the Get-Command cmdlet, see Get-Command.
+
+
+ HOW TO FIND HELP FOR THE COMMANDS IN A MODULE
+    If the module contains Help topics for the commands that it exports,
+    the Get-Help cmdlet will display the Help topics. Use the same command
+    format that you would use for any Help topic in Windows PowerShell.
+
+    To find the Help topic for the commands in a module, at the Windows
+    PowerShell prompt, type:
+
+        get-help <command-name>
+
+    For more detailed Help, type:
+
+        get-help <command-name> -detailed
+
+    For example, to find detailed Help for the Start-BitsTransfer cmdlet,
+    type:
+
+        get-help Start-BitsTransfer -detailed
+
+    For more information about the Get-Help module, see Get-Help.
+
+
+ HOW TO REMOVE A MODULE
+    When you remove a module, the commands that the module added are deleted
+    from the session.
+
+    To remove a module from your session, use the following command
+    format.
+
+        remove-module <module-name>
+
+    For example, the following command removes the BitsTransfer module
+    from the current session.
+
+        remove-module BitsTransfer
+
+    Removing a module reverses the operation of importing a module. Removing
+    a module does not uninstall the module. For more information about the
+    Remove-Module cmdlet, see Remove-Module.
+
+========================================================================
+
+
+
+
